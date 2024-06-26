@@ -1,3 +1,4 @@
+//link - https://leetcode.com/problems/peak-index-in-a-mountain-array/description/
 // Q) An array arr is a mountain if the following properties hold:
 
 // arr.length >= 3
@@ -38,8 +39,6 @@ public:
         return i;    
     }
 };
-
-
 
 // soln 2)
 class Solution {
