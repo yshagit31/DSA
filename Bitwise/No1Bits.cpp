@@ -1,0 +1,100 @@
+// Write a function that takes the binary representation of a positive integer and returns the number of 
+// set bits
+//  it has (also known as the Hamming weight).
+
+
+// Example 1:
+
+// Input: n = 11
+
+// Output: 3
+
+// Explanation:
+
+// The input binary string 1011 has a total of three set bits.
+
+// Example 2:
+
+// Input: n = 128
+
+// Output: 1
+
+// Explanation:
+
+// The input binary string 10000000 has a total of one set bit.
+
+// Example 3:
+
+// Input: n = 2147483645
+
+// Output: 30
+
+// Explanation:
+
+// The input binary string 1111111111111111111111111111101 has a total of thirty set bits.
+
+ 
+
+// Constraints:
+
+// 1 <= n <= 231 - 1
+ 
+
+// Follow up: If this function is called many times, how would you optimize it?
+#include <bits/stdc++.h>
+using namespace std;
+//This shifting can cause problem if nos are negative other operations also wont work but it depends
+
+class Solution {
+public:
+    int hammingWeight(int n) {
+       int count=0;
+       while(n!=0)
+       {
+       if(n&1) {count++;}    //will work only if last digit is 1
+        n=n>>1;
+       }
+       //last digit will go off
+       return count;    
+    }
+};
+
+//or
+class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+        int ans=1;
+       for(int i=0;i<=30;i++)
+        {
+            
+            if(ans==n) return true;
+           if(ans<INT_MAX/2) ans=ans*2;
+ 
+        }
+         return false;    
+    }   
+};
+
+//or
+
+//  Explanation of the Efficient Approach
+// A number is a power of two if it has exactly one '1' bit in its binary representation. For example:
+// -  1 is  0001
+// -  2 is  0010
+// -  4 is  0100 
+
+// When you subtract 1 from a power of two, all the bits after the single '1' bit (including the '1' bit itself) are flipped:
+// - \( 4 - 1 = 3 \) -> \( 0100 - 1 = 0011 \)
+
+// Now, the bitwise AND operation between a power of two and one less than itself will be zero:
+// - \( 4 \& 3 = 0100 \& 0011 = 0000 \)
+
+
+class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+      return n > 0 && (n & (n - 1)) == 0;
+    }
+};
+
+
