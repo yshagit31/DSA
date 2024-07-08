@@ -56,3 +56,47 @@ pair<int, int> getFloorAndCeil(int arr[], int n, int x) {
     if(maxi==INT_MIN&&mini==INT_MAX) return {-1,-1};
     return {maxi,mini};
 }
+
+//or 
+
+pair<int, int> getFloorAndCeil(int arr[], int n, int x) {
+    sort(arr,arr+n);
+    int flo = -1, ce = -1;
+    int i = 0, j = n - 1;
+    while(i<=j){
+        int mid = (i + j)/2;
+        if(arr[mid] == x) return {x,x};
+        if(arr[mid] < x){
+            flo = arr[mid];
+            i = mid + 1;
+        }else{
+            ce = arr[mid];
+            j = mid - 1;
+        }
+    }
+    return {flo,ce};
+}
+
+// in a sorted array 
+
+pair<int, int> getFloorAndCeil(vector<int> &a, int n, int x) {
+	int mini=INT_MAX,maxi=INT_MIN,low=0,high=n-1,mid;
+       while(low<=high)
+       {
+           mid=(low+high)/2;
+        if(a[mid]<=x)
+        {
+            maxi=max(maxi,a[mid]);
+            low=mid+1;
+        }
+        if (a[mid] >= x) {
+            mini = min(a[mid], mini);
+            high=mid-1;
+        }
+        }
+ 
+    if(mini==INT_MAX) return {maxi,-1};
+    if(maxi==INT_MIN) return {-1,mini};
+    if(maxi==INT_MIN&&mini==INT_MAX) return {-1,-1};
+    return {maxi,mini};
+}
