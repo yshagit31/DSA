@@ -76,10 +76,10 @@ int main()
   pq.pop();
 }
 
-set <int> s;
+set <int> s;  //stores only unique values
 s.insert(1);
 s.emplace(2);
-s.emplace(3);
+s.emplace(4);
 s.emplace(4);
 cout<<endl;
 // s.erase(2);
@@ -91,10 +91,68 @@ auto it1=s.lower_bound(2);
    cout<<endl<<*it1<<" ";
    auto it3=s.lower_bound(3);
    cout<<endl<<*it3<<" ";
-
+   auto it4=s.lower_bound(4);
+   cout<<endl<<*it4<<" ";
 auto it2=s.upper_bound(3);
    cout<<endl<<*it2<<" ";
 
+   auto ite = s.lower_bound(2);
+   cout<<endl<<"hhh"<<*ite;
 
- return 0;
+   multiset<int> ms;
+   ms.insert(1);
+   ms.insert(1);
+   ms.insert(1);
+    int cnt=ms.count(1);
+    cout<<endl<<""<<cnt;
+
+    ms.erase(ms.find(1));
+    for(auto i:ms)
+      cout<<endl<<""<<i;
+
+      map<pair <int,int> , int> mpp;
+      mpp.insert({{2,3},3});
+ map<int,int> mpp2;
+ mpp2.insert({1,3});
+ mpp2.insert({2,4});
+ mpp2.insert({3,6});
+ mpp2[4]=10;
+
+   for(auto it:mpp)
+     { cout<<endl<<it.first.first<<" "<<it.first.second<<" "<<it.second;}
+
+cout<<endl<<"map size"<<mpp2.size()<<endl;
+     for(int i=1;i<=mpp2.size();i++)
+     {
+      cout<<mpp2[i]<<" ";
+     }
+      cout<<mpp2[5]<<" ";
+      auto itera =mpp2.find(3);
+        cout<<endl<<(itera)->second;
+
+   auto itt=mpp2.lower_bound(2);
+   cout<<endl<<itt->first;
+
+
+   multimap <int,int> multimpp;
+   multimpp.insert({2,3});
+   multimpp.insert({2,3});
+
+   for(auto it:multimpp)
+   {
+      cout<<endl<<it.first<<" "<<it.second;
+   }
+
+
+ int num=7;
+ int cnt1= __builtin_popcount(num);
+  int num2=1236484;
+  cout<<endl<<"Num 1 cnt"<<cnt1;
+ long cnt2= __builtin_popcountl(num2);
+  cout<<endl<<"Num 1 cnt"<<cnt2;
+ long long num3=9678578747;
+ int cnt3= __builtin_popcountll(num3);
+  cout<<endl<<"Num 1 cnt"<<cnt3;
+
+   return 0;
 }
