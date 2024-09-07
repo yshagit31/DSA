@@ -1,4 +1,5 @@
 //link - https://www.geeksforgeeks.org/problems/minimum-cost-of-ropes-1587115620/1?page=1&category=Heap&sortBy=submissions
+//Sept 4 heap ques 1
 // Given an array arr containing the lengths of the different ropes, we need to connect these ropes to form one rope. The cost to connect two ropes is equal to sum of their lengths. The task is to connect the ropes with minimum cost.  
 
 // Examples:

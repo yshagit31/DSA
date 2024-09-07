@@ -64,7 +64,7 @@ void addNode(Node *head, int pos, int data)
            p=p->next;
          
        }
-           Node*temp=new Node(data);
+        Node*temp=new Node(data);
        if(p->next==NULL)
        {
            temp->prev=p;
