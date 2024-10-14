@@ -1,12 +1,14 @@
 //link -https://www.naukri.com/code360/problems/pair-sum_697295?source=youtube&campaign=love_babbar_codestudio1
 // Problem statement
-// You are given an integer array 'ARR' of size 'N' and an integer 'S'. Your task is to return the list of all pairs of elements such that each sum of elements of each pair equals 'S'.
+// You are given an integer array 'ARR' of size 'N' and an integer 'S'. Your task is to return the list of all pairs of elements such that 
+//each sum of elements of each pair equals 'S'.
 
 // Note:
 
 // Each pair should be sorted i.e the first value should be less than or equals to the second value. 
 
-// Return the list of pairs sorted in non-decreasing order of their first value. In case if two pairs have the same first value, the pair with a smaller second value should come first.
+// Return the list of pairs sorted in non-decreasing order of their first value. In case if two pairs have the same first value, 
+//the pair with a smaller second value should come first.
 // Detailed explanation ( Input/output format, Notes, Images )
 // Constraints:
 // 1 <= N <= 10^3
@@ -107,3 +109,33 @@ public:
 // two pass hash map
 
 //one pass hash map soln
+
+//two pointer soln
+#include<bits/stdc++.h>
+using namespace std;
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target)
+     {
+       
+        vector<pair<int,int>> arr;
+        for(int i=0;i<nums.size();i++)
+        {
+            arr.push_back({nums[i],i});
+        }
+         sort(arr.begin(),arr.end());
+        vector<int> ans;
+       int low=0,high=nums.size()-1;
+       while(low<=high)
+       {
+        if(arr[low].first+arr[high].first>target) high--;
+        else if(arr[low].first+arr[high].first<target) low++;
+        else if(arr[low].first+arr[high].first==target) {
+            ans.push_back(arr[low].second);
+            ans.push_back(arr[high].second);
+            return ans;
+        }
+       }
+       return {-1,-1};
+    }
+};
