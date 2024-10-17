@@ -39,66 +39,77 @@
 // All prices will have at most 10 digits.
 // 0 <= discount <= 100
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    string discountPrices(string sentence, int discount) {
+    string discountPrices(string sentence, int discount)
+    {
         string s, temp;
         string res;
         double fp;
         double num;
         ostringstream os;
 
-        for (size_t i = 0; i < sentence.length(); i++) {
-            if (sentence[i] == '$') {
-               if(i==0||sentence[i-1]==' ')
-               {
-                 res += sentence[i];
-                s = "";
-                temp = "";
-                i++;
-                while (i < sentence.size() && sentence[i] != ' ' &&
-                       sentence[i] >= '0' && sentence[i] <= '9') {
-                    s += sentence[i];
+        for (size_t i = 0; i < sentence.length(); i++)
+        {
+            if (sentence[i] == '$')
+            {
+                if (i == 0 || sentence[i - 1] == ' ')  // works only if the price is a new word means has ' ' before $. Since 1$2 is not a valid price
+                {
+                    res += sentence[i];   // Adding dollar to result and moving ahead
+                    s = "";  temp = "";
                     i++;
+                    while (i < sentence.size() && sentence[i] != ' ' && sentence[i] >= '0' && sentence[i] <= '9' ) {
+                        s += sentence[i];
+                        i++;  }
+
+                        if (!s.empty() &&
+                            (sentence[i] == ' ' || i == sentence.length())) //if s has something means a digit and either after the word meaning where we stopped taking numbers. That place should be a space or end of string. Means only space of end of string can be after valid price
+                        {
+                            num = stod(s);
+                            if (num > 0)   // since if num is 0 means read no is 0 it is to be given as 0. If after discount no is 0 it is to be given as 0.00
+                            {
+                                fp = (num - (discount * num) / 100);
+                                os.str("");  os.clear();
+                                os << fixed << setprecision(2) << fp;
+                                temp = os.str();
+                                res += temp;
+                            }
+                            else    // if no is 0 then add is to result as it is
+                            {
+                                res += s;
+                            }
+                            if (i < sentence.size() && sentence[i] != '$')  // adding the space after the valid price to the result
+                            {
+                                res += sentence[i];
+                            }
+                          }
+                          else if (!s.empty())  // if s is not empty but it isnt a valid price either it has something after the digit that is not space then since its no it will be in s so adding that to result
+                        {
+                            res += s;
+                            if (i < sentence.size())
+                            {
+                                res += sentence[i];
+                            }
+                        }
+                          else   // if after dollar we dont have any number or any other case we add directly to result
+                        {
+                            if (i < sentence.size())
+                            {
+                                res += sentence[i];
+                            }
+                        }
                 }
-                if (!s.empty() &&
-                    (sentence[i] == ' ' || i == sentence.length())) {
-                    num = stod(s);
-                    if (num > 0) {
-                        fp = (num - (discount * num) / 100);
-                        cout << " fpp" << fp;
-                        os.str("");
-                        os.clear();
-                        os << fixed << setprecision(2) << fp;
-                        temp = os.str();
-                        cout << "temp" << temp;
-                        res += temp;
-                    } else {
-                        res += s;
-                    }
-                    if (i < sentence.size() && sentence[i] != '$') {
-                        res += sentence[i]; // Append next non-numeric character
-                    }
-                } else if (!s.empty()) {
-                    res += s;
-                    if (i < sentence.size()) {
-                        res += sentence[i];
-                    }
-                } else {
-                    if (i < sentence.size()) {
-                        res += sentence[i];
-                    }
+                else   // if the $ in price is not preceeded by space then add the thing to string
+                {     
+                   res += sentence[i];
                 }
-               }
-               else{
-                 if (i < sentence.size()) {
-                        res += sentence[i];
-                    }
-               }
-            } else {
+            }
+            else   // if we encounter anything except dollar add to string
+            {
                 res += sentence[i];
             }
         }
