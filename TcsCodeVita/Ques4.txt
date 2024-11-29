@@ -1,0 +1,96 @@
+The String Puzzle
+Problem Description
+Ajantha, a book lover who enjoys exploring books, discovered an ancient book one day. Inside, she found an interesting puzzle. The puzzle featured a tree-like structure where each node is a word in an unknown language. Instead of the full hierarchy, she was only given the edges between the words. Additionally, she was provided with another string containing words from the hierarchy and asked to determine the value of this string. The value is calculated by adding the levels of all the words within the string to which they belong, starting from level 1.
+
+Consider the edges are unidirectional from first node to second node. Also note that if a word is not present in the given hierarchy, its level will be -1.
+
+Given the edges between the words and the string as input, calculate and print the value of the string.
+
+Constraints
+1 <= number of edges <= 100
+
+1 <= number of words in the input string <= 1000
+
+The words will be having only lowercase alphabets.
+
+Input
+First line consists of an integer N, denoting the number of edges.
+
+Next N lines consist of two space separated words, denoting that there exists an edge between them.
+
+Last line consists of a string for which you need to calculate the value.
+
+Output
+Single integer denoting the value of the given input string.
+
+Time Limit (secs)
+1
+
+Examples
+Example 1
+
+Input
+
+9
+
+abcd wxyz
+
+vsmoh bhwbb
+
+crpyc ynkna
+
+bhwbb uhhjm
+
+crpyc eokuo
+
+ynkna abcd
+
+bhwbb uvjyu
+
+vsmoh crpyc
+
+bhwbb enzwb
+
+uhhjm wxyz vsmoh crpyc bhwbb
+
+Output
+
+13
+
+Explanation
+
+Upon processing the input words the following tree-like hierarchy of words will emerge.
+
+com.tcs.cv.automata.ei.middleware.DocxToHtmlConverter@7f4d9395:image1.png
+
+Hence the value of the given string will be 3 (uhhjm) + 5 (wxyz) + 1 (vsmoh) + 2 (crpyc) + 2 (bhwbb) = 13. Hence, print the 13 as the output.
+
+Example 2
+
+Input
+
+5
+
+abc pqr
+
+xyz mno
+
+abc uvw
+
+mno abc
+
+qwe xyz
+
+mno xyz pqr mno pqr uvw abc qwe
+
+Output
+
+28
+
+Explanation
+
+Upon processing the input words the following tree-like hierarchy of words will emerge.
+
+com.tcs.cv.automata.ei.middleware.DocxToHtmlConverter@7f4d9395:image2.png
+
+Hence the value of the given string will be 3 (mno) + 2 (xyz) + 5 (pqr) + 3 (mno) + 5 (pqr) + 5 (uvw) + 4 (abc) + 1 (qwe) = 28. Hence, print 28 as output.

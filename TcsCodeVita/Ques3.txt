@@ -1,0 +1,148 @@
+Arrange Map
+Problem Description
+You were given a task of laying track between two stations. Since the plan is big to cover in single sheet, the whole project is drawn into several sheets.
+
+You drew the position where the tracks are going to be laid. Initially, you arranged the sheets to create the complete plan, but discovered they were not in the correct order.
+
+The complete plan is a square of size N x N, while each individual sheet measures M x M. Both the full plan and the individual sheets are always square in shape.
+
+For example, consider a complete plan of size 6*6.
+
+LLLLLL
+
+LSTTTL
+
+LLLLTL
+
+LLLLTL
+
+LLLLDL
+
+LLLLLL
+
+The L represents land, S and D the stops between which the track must be laid. T represents the track.
+
+Assume its drawn with 3*3 sheets, the individual sheet be like
+LLL LLL LLL LTL
+
+LST TTL LLL LDL
+
+LLL LTL LLL LLL
+
+Since the map is unarranged, the entire plan may also be reconstructed as follows:
+LLLLLL
+
+LSTLLL
+
+LLLLLL
+
+LLLLTL
+
+TTLLDL
+
+LTLLLL
+
+You are now tasked with rearranging the individual sheets to create a complete plan that ensures a continuous track between point S and point D. It is specified that the individual sheet containing "S" will always be positioned in the top left corner, while the sheet with "D" will always be in the bottom right corner. In the input, they will be in the same place. After rearranging, the distance between S and D should be the shortest.
+
+The track cannot run over the edges of the individual sheets. That is,
+LLL
+TLL
+TTL
+
+is not valid.
+
+Rearrange the map and return the shortest distance through track between the S and D. D is included in the distance calculation.
+
+Note: Extra tracks will be present, that may not be part of path between S and D.
+
+Constraints
+6 <= N <= 25
+
+3 <= M <= 5
+
+Input
+First line consists of two space separated integers representing N and M, i.e., whole plan and individual sheet sizes, respectively
+
+Next N lines contain N space separated characters either L, T, S, D representing the misarranged plan.
+
+Output
+Print single integer representing the shortest distance along the track between S and D.
+
+Time Limit (secs)
+1
+
+Examples
+Example 1
+
+Input
+
+6 3
+
+LLLLLL
+
+LSTLLL
+
+LLLLLL
+
+LLLLTL
+
+TTLLDL
+
+LTLLLL
+
+Output
+
+6
+
+Explanation
+
+The example is same as the one explained in description section, the shortest distance between S and D after arrangement will be 6.
+
+Example 2
+
+Input
+
+6 3
+
+LLLLLL
+
+LSTTTT
+
+LLLLLL
+
+LLLLTL
+
+TTLLDL
+
+LTLLLL
+
+Output
+
+6
+
+Explanation
+
+From the input it is seen that, the full plan of 6*6 and individual sheet of 3*3
+
+The individual sheet are
+LLL LLL LLL LTL
+
+LST TTT TTL LDL
+
+LLL LLL LTL LLL
+
+Here the sheets will be represented by the index they present above in order 1 to 4. The sheets 1, 4 containing S and D will be at (0,0) and (1,1). If sheet 2 is placed at (0,1), since its continuous after (0,0) but it is not connecting anything further, ending abruptly, so the sheet 3 will be placed at (0,1) and thus D in (1,1) also connected. Below represents the complete plan
+
+LLLLLL
+
+LSTTTL
+
+LLLLTL
+
+LLLLTL
+
+TTTLDL
+
+LLLLLL
+
+Thus, the shortest distance is 6. Hence, print the same.
