@@ -41,3 +41,66 @@
 
 // Constraints:
 // 1 ≤ V, E ≤ 104
+
+
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+class Solution {
+  public:
+    // Function to return a list containing the DFS traversal of the graph.
+    void dfs(int i, vector<vector<int>>&adj, int vis[], vector<int>&res)
+    {
+        vis[i]=1;
+        res.push_back(i);
+        for(auto it:adj[i])
+        {
+            if(!vis[it])
+            {
+                dfs(it,adj,vis,res);
+            }
+        }
+    }
+    vector<int> dfsOfGraph(vector<vector<int>>& adj) {
+      int V=adj.size(),start=0;
+      int vis[V]={0};
+      vector<int> res;
+      dfs(start,adj,vis,res);
+      return res;
+    }
+};
+
+//{ Driver Code Starts.
+
+int main() {
+    int tc;
+    cin >> tc;
+    while (tc--) {
+        int V, E;
+        cin >> V >> E;
+
+        vector<vector<int>> adj(
+            V); // Use vector of vectors instead of array of vectors.
+
+        for (int i = 0; i < E; i++) {
+            int u, v;
+            cin >> u >> v;
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+        }
+
+        Solution obj;
+        vector<int> ans = obj.dfsOfGraph(adj);
+        for (int i = 0; i < ans.size(); i++) {
+            cout << ans[i] << " ";
+        }
+        cout << endl;
+        cout << "~" << endl;
+    }
+    return 0;
+}
+
+// } Driver Code Ends
