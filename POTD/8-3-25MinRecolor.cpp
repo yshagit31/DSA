@@ -59,3 +59,22 @@ class Solution {
             return minCnt;  
         }
     };
+
+
+    class Solution {
+        public:
+            int minimumRecolors(string blocks, int k) {
+                int cnt=0,minCnt=INT_MAX,n=blocks.length(),left=0,right=0;
+                for(;right<n;right++)
+                { 
+                    if(blocks[right]=='W') cnt++;
+                    if(right-left+1==k)
+                    {
+                    if(cnt<minCnt) minCnt=cnt;   
+                        if(blocks[left]=='W') cnt--;
+                    left++;
+                    }
+                }
+                return minCnt;  
+            }
+        };
