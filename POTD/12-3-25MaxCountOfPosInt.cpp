@@ -27,7 +27,6 @@
 // 1 <= nums.length <= 2000
 // -2000 <= nums[i] <= 2000
 // nums is sorted in a non-decreasing order.
- 
 
 // Follow up: Can you solve the problem in O(log(n)) time complexity?
 
