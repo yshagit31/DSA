@@ -42,3 +42,35 @@
 
 #include<bits/stdc++.h>
 using namespace std;
+
+class Solution {
+    private:
+        int canRepair(long long &time,vector<int>&ranks, int &cars)
+        {
+            long long cnt=0;
+            for(int i=0;i<ranks.size();i++)
+            {
+                long long m=time/ranks[i];
+                long long n=sqrt(m);
+                cnt+=n;
+            }
+            return cnt>=cars;
+        }
+    public:
+        long long repairCars(vector<int>& ranks, int cars) {
+            long long low=1,ans;
+            long long high=100'000'000'000'000LL;
+            while(low<=high)
+            {
+                long long mid=low+(high-low)/2;
+                if(canRepair(mid,ranks,cars))
+                {
+                    ans=mid;
+                    high=mid-1;
+                }else{
+                    low=mid+1;
+                }
+            }
+            return ans;
+        }
+    };
