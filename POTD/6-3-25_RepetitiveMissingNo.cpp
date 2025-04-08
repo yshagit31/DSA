@@ -67,7 +67,7 @@ class Solution {
 
     // Approach 2
 
-    // We can use a set and winsert values in it now if the insertion wont hapeen in set meaning that element is duplicate and we will find sum of all nos 
+    // We can use a set and insert values in it now if the insertion wont hapeen in set meaning that element is duplicate and we will find sum of all nos 
     // but duplcate no taken only once. Now subract sum of n*2 natural nos from this sum to get missing no
 
     //     Understanding uniq.insert(num).second in C++
